@@ -1,38 +1,567 @@
-.App {
-  text-align: center;
+* {
+    box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+html, body, #root, #app {
+    min-width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+body {
+    font-family: 'Ubuntu', sans-serif;
+    background-color: #2196f3;
+    color: white;
+}
+
+.page {
+    height: 100%;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.active {
+    display: flex;
+}
+
+#main-menu {
+    height: 100vh;
+    min-height: 255px;
+    justify-content: flex-start;
+    gap: 40px;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+#main-menu, #help-page, #help-header-wrapper, #sp-game {
+    background-color: #2196f3;
+    background-image: url('../public/xo-bg.svg');
+    background-size: 200px 200px;
+    background-repeat: repeat; 
+    animation: bgScroll-Sm 20s linear infinite;
+}
+
+#title {
+    font-family: 'Titan One', sans-serif;
+    color: white;
+    font-size: 4rem;
+    text-shadow: -1px -1px 0px #2196f3, 3px 3px 0px #2196f3, 6px 6px 0px #0d47a1;
+}
+
+#title-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 40vh;
+    min-height: 300px;
+}
+
+#menu-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: max(30px ,5vh);
+    height: 30vh;
+    min-height: 170px;
+}
+
+.menu-btn {
+    width: fit-content;
+    background-color: inherit;
+    color: white;
+    font-size: 1.4em;
+    font-family: 'Ubuntu', sans-serif;
+    border: none;
+    cursor: pointer;
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+    padding-bottom: 8px;
+    text-decoration: none;
+}
+
+.menu-btn:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.menu-btn:hover {
+    text-shadow: -1px -1px 0px #2196f3, 1px 1px 0px #2196f3, 2px 2px 0px #0d47a1;
+    box-shadow: 0px 4px 0px white;
+}
+
+#help-page  {
+    height: 100vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    overflow-y: auto;
+    gap: max(5vh, 20px);
+    z-index: 3;
+    padding-top: 0;
+}
+
+#help-header-wrapper {
+    width: 100%;
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+}
+
+#help-header {
+    width: 100%;
+    max-width: 780px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+}
+
+#back-btn {
+    background: none;
+    border: none;
+    color: white;
+    padding: 0;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+#back-btn svg {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+#back-btn svg path {
+    fill: #fff;
+}
+
+#help-header-offset {
+    width: 32px;
+}
+
+#help-title {
+    font-family: 'Titan One', sans-serif;
+    color: white;
+    text-shadow: -1px -1px 0px #2196f3, 3px 3px 0px #2196f3, 6px 6px 0px #0d47a1;
+}
+
+
+.help-section {
+    width: 100%;
+    max-width: 780px;
+    position: relative;
+    z-index: 1;
+    padding: 0 10px;
+}
+
+.help-text {
+    text-align: start;
+    max-width: 780px;
+    line-height: 1.4rem;
+}
+
+.help-sub-title {
+    font-family: 'Titan One', sans-serif;
+    color: white;
+    text-shadow: -1px -1px 0px #2196f3, 3px 3px 0px #2196f3, 6px 6px 0px #0d47a1;
+}
+
+#sp-game {
+    width: 100%;
+    height: 100vh;
+    padding: 10px;
+    min-height: max(500px, calc(100vw  + 149px));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#game-hud {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 18vh;
+    min-height: 125px;
+    max-height: 165px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#difficulty-select {
+    width: 125px;
+    height: 30px;
+    margin-bottom: 15px;
+    background: inherit;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.25em;
+    box-shadow: none;
+    outline: none;
+    appearance: button;
+}
+
+.difficulty-option {
+    background: #2196f3;
+}
+
+
+#difficulty-select:not(:checked) {
+    background: inherit;
   }
+
+.difficulty-option:hover,
+.difficulty-option:focus,
+.difficulty-option:active,
+.difficulty-option:checked {
+    background-color: #1b76bf;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#game-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+#score-board {
+    display: flex;
+    width: 100%;
+    max-width: 400px;
+    justify-content: space-between;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.score-btn {
+    background: inherit;
+    border: 2px solid white;
+    color: white;
+    border-radius: 5px;
+    width: 40%;
+    height: 30px;
+    min-width: 95px;
+    max-width: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.turn {
+    text-shadow: -1px -1px 0px #2196f3, 1px 1px 0px #2196f3, 2px 2px 0px #0d47a1;
+    box-shadow: 0px 4px 0px white;
+}
+
+#game-board {
+    width: 100%;
+    height: calc(100vw - 30px);
+    min-height: fit-content;
+    min-width: 230px;
+    min-height: 220px;
+    max-width: 490px;
+    max-height: 490px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#game-board-wrapper {
+    width: 100%;
+    height: calc(100vw - 30px);
+    min-width: 230px;
+    min-height: 220px;
+    max-width: 490px;
+    max-height: 490px;
+    position: relative;
+}
+
+#game-board-divider {
+    width: 100%;
+    height: 100%;
+    min-width: 230px;
+    min-height: 220px;
+    max-width: 490px;
+    max-height: 490px;
+    position: relative;
+}
+
+#game-board-divider path {
+    fill:none;
+    stroke-linecap:round;
+    stroke-width:9.265;
+    stroke:#fffffe;
+}
+
+#game-grid {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-width: 230px;
+    min-height: 220px;
+    max-width: 490px;
+    max-height: 490px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 2.5%;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.grid-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 15%;
+    width: 100%;
+    height: 100% ;
+    cursor: pointer;
+}
+
+.player-icon {
+    fill:#fff;
+    width: 75%;
+    height: 75%;
+}
+
+#game-wrapper {
+    min-width: 100%;
+    min-height: 350px;
+    align-items: center;
+    position: relative;
+}
+
+#turn-wrapper {
+    color: white;
+}
+
+#game-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#restart-game-btn, #return-to-menu {
+    background: #2196f3;
+    border: none;
+    color: white;
+    font-family: 'Ubuntu' sans-serif;
+    font-size: 1.1em;
+    display: flex;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#restart-game-btn:visited, #return-to-menu:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.x-player-icon, .o-player-icon {
+    width: 85%;
+    height: 85%;
+}
+
+/* I would have used css grid here but i wanted more browser support */
+
+.row {
+    display: flex;
+    width: 100%;
+    height: 32%;
+    position: relative;
+    justify-content: space-between;
+}
+
+.cell {
+    padding: 0;
+    background-color: #001220;
+    border: none;
+    width: 32%;
+    height: 100%;
+    cursor: pointer;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.cell:active {
+    background-color: #001220;
+}
+
+#player-turn[data-player="X"], .cell[data-player="X"] {
+    color: #ec6543
+}
+
+#player-turn[data-player="O"], .cell[data-player="O"] {
+    color: #FBAE3C;
+}
+
+#results-wrapper {
+    min-height: 150px;
+}
+
+#result {
+    color: white;
+    font-size: 3em;
+}
+
+#player-result[data-player="X"] {
+    color: #ec6543;
+}
+
+#player-result[data-player="O"] {
+    color: #FBAE3C;
+}
+
+#restart-game {
+    margin-bottom: 15px;
+}
+
+@keyframes bgScroll-Sm {
+    0% {
+      background-position : 0px 0px
+    }
+    100% {
+      background-position : -1000px -1000px
+    }
   }
-  to {
-    transform: rotate(360deg);
+
+  @keyframes bgScroll-Lg {
+      0% {
+          background-position: 0px 0px;
+      }
+
+      100% {
+          background-position: -2000px -2000px;
+      }
   }
-}
+
+@media screen and (min-width: 315px) {
+
+    #gameboard {
+        min-width: 300px;
+        min-height: 300px;
+    }
+
+    .cell {
+        font-size: 38px;
+    }
+  }
+
+@media screen and (min-width: 500px) {
+
+    #menu-wrapper {
+        min-height: 125px;
+    }
+
+    #game-wrapper {
+        min-height: 500px;
+    }
+
+    #gameboard {
+        min-width: 400px;
+        min-height: 400px;
+    }
+
+    .cell {
+        font-size: 42px;
+    }
+  }
+
+  @media screen and (min-width: 520px) {
+    #sp-game {
+        min-height: 720px;
+    }
+  }
+
+  @media screen and (min-width: 780px) {
+
+    #difficulty-select {
+        width: 150px;
+        height: 40px;
+        min-height: 35px;
+    }
+
+    .score-btn {
+        height: 35px;
+    }
+
+    #difficulty-select, .score-btn {
+        font-size: 1.4em;
+        border-width: 3px;
+    }
+
+    .game-status {
+        font-size: 1.15em;
+    }
+
+    #restart-game-btn, #return-to-menu {
+        font-size: 1.3em;
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+      #main-menu {
+          gap: 80px;
+      }
+
+      #main-menu, #help-page, #help-header-wrapper, #sp-game {
+        background-size: 400px 400px;
+        animation: bgScroll-Lg 35s linear infinite;
+      }
+
+      #title {
+          font-size: 5rem;
+      }
+
+      .menu-btn {
+          font-size: 1.5rem;
+      }
+
+      #help-page {
+          gap: max(9vh, 50px);
+      }
+
+      #help-title {
+          font-size: 2.5em;
+      }
+
+      .help-sub-title {
+          font-size: 1.75em;
+      }
+  }
+
+  @media screen and (min-width: 1500px) {
+      #help-header, .help-section, .help-text {
+          max-width: 1200px;
+      }
+
+      .help-text {
+          font-size: 1.1em;
+      }
+  }

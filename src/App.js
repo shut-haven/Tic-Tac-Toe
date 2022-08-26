@@ -1,23 +1,17 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import MainMenu from './pages/MainMenu';
+import Help from './pages/Help';
+import SPGame from './pages/SPGame';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app">
+      <Routes>
+          <Route index element={<MainMenu />} />
+          <Route path="/singleplayer" element={<SPGame multi={true}/>} />
+          <Route path="/help" element={<Help />} />
+      </Routes>
     </div>
   );
 }
