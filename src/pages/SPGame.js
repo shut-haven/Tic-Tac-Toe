@@ -82,7 +82,7 @@ const SPGame = () => {
                     <select name="difficulty" id="difficulty-select" value={difficulty} onChange={changeDifficulty}>
                         <option className="difficulty-option" value="easy">Easy</option>
                         <option className="difficulty-option" value="medium">Medium</option>
-                        <option className="difficulty-option" value="impossible">Impossible</option>
+                        <option className="difficulty-option" value="hard">Hard</option>
                     </select>
                     <button id="player-count">1P</button>
                 </div>

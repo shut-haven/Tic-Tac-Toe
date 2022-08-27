@@ -209,6 +209,7 @@ body {
 }
 
 #difficulty-select {
+    width: auto;
     margin-bottom: 15px;
     background: inherit;
     color: white;
