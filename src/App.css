@@ -201,9 +201,14 @@ body {
     align-items: center;
 }
 
+#game-options {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 #difficulty-select {
-    width: 125px;
-    height: 30px;
     margin-bottom: 15px;
     background: inherit;
     color: white;
@@ -360,7 +365,7 @@ body {
     color: white;
 }
 
-#game-options {
+#game-controls {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -502,8 +507,6 @@ body {
   @media screen and (min-width: 780px) {
 
     #difficulty-select {
-        width: 150px;
-        height: 40px;
         min-height: 35px;
     }
 

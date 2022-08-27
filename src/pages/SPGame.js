@@ -78,12 +78,13 @@ const SPGame = () => {
     return ( 
         <div id="sp-game" className="page">
             <div id="game-hud">
-                <div id="game-opts">
+                <div id="game-options">
                     <select name="difficulty" id="difficulty-select" value={difficulty} onChange={changeDifficulty}>
                         <option className="difficulty-option" value="easy">Easy</option>
                         <option className="difficulty-option" value="medium">Medium</option>
                         <option className="difficulty-option" value="impossible">Impossible</option>
                     </select>
+                    <button id="player-count">1P</button>
                 </div>
                 <div id="game-info">
                     <div id="score-board">
@@ -100,7 +101,7 @@ const SPGame = () => {
                 </div>
             </div>
             <Gameboard grid={gameState.grid} handleTurn={handleTurn}/>
-            <div id="game-options">
+            <div id="game-controls">
                 <button id="restart-game-btn" onClick={restartGame}>Restart Game</button>
                 <Link id="return-to-menu" to="/">Exit Game</Link>
             </div>
