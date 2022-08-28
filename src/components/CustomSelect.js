@@ -13,10 +13,17 @@ const CustomSelect = () => {
     return ( 
         <div className="custom-select">
             <div className="select-wrapper">
-                <button className="" type="button" onClick={toggleOptions}>
-                    1P
+                <button type="button" onClick={toggleOptions} aria-haspopup="listbox" aria-expanded={optionsOpen}>
+                    ^
                 </button>
-                <ul className={`options-list ${optionsOpen ? 'open' : ''}`}>
+                <ul className={`options-list ${optionsOpen ? 'open' : ''}`} tabIndex={-1}>
+                    {
+                        optionsList.map((option, index) => {
+                            <li id={option} role="option">
+
+                            </li>
+                        })
+                    }
                 </ul>
             </div>
         </div>
