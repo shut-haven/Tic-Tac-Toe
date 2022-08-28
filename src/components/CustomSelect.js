@@ -4,7 +4,7 @@ const CustomSelect = () => {
     const [optionsOpen, setOptionsOpen] = useState(false);
     const [currentOption, setCurrentOption] = useState(0);
 
-    const optionsList = ['Easy', 'Medium', 'Impossible'];
+    const options = ['Easy', 'Medium', 'Impossible'];
 
     const toggleOptions = () => {
         setOptionsOpen(!optionsOpen);
@@ -14,13 +14,13 @@ const CustomSelect = () => {
         <div className="custom-select">
             <div className="select-wrapper">
                 <button type="button" onClick={toggleOptions} aria-haspopup="listbox" aria-expanded={optionsOpen}>
-                    ^
+                    {options}
                 </button>
-                <ul className={`options-list ${optionsOpen ? 'open' : ''}`} tabIndex={-1}>
+                <ul className={`options-list ${optionsOpen ? 'open' : ''}`} tabIndex={-1} role="listbox" aria-activedescendant={options[currentOption]}>
                     {
-                        optionsList.map((option, index) => {
-                            <li id={option} role="option">
-
+                        options.map((option, index) => {
+                            <li id={option} role="option" aria-selected={currentOption == index} tabIndex={0}>
+                                {option}
                             </li>
                         })
                     }
