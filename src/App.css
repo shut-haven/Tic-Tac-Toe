@@ -208,34 +208,8 @@ body {
     justify-content: space-between;
 }
 
-#difficulty-select {
-    width: auto;
-    margin-bottom: 15px;
-    background: inherit;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 1.25em;
-    box-shadow: none;
-    outline: none;
-    appearance: button;
-}
-
-.difficulty-option {
-    background: #2196f3;
-}
-
-
-#difficulty-select:not(:checked) {
-    background: inherit;
-  }
-
-.difficulty-option:hover,
-.difficulty-option:focus,
-.difficulty-option:active,
-.difficulty-option:checked {
-    background-color: #1b76bf;
+.custom-select {
+    
 }
 
 #game-info {
