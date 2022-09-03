@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import  useLocalStorage  from "../hooks/useLocalStorage";
 import { Link } from "react-router-dom";
 import { turn } from "../util/Game";
+import CustomSelect from "../components/CustomSelect";
 import Gameboard from "../components/Gameboard";
 
 const SPGame = () => {
@@ -41,11 +42,12 @@ const SPGame = () => {
         setGameState(defaultGameState);
     }
 
-    const changeDifficulty = (event) => {
-        const val = event.target.value;
-        setDifficulty(val);
+    const changeDifficulty = (option) => {
+        console.log('Change diff ran');
+        console.log(option);
+        setDifficulty(option);
         restartGame();
-    }
+    };
 
     const handleTurn = (x, y) => {
         
@@ -79,11 +81,7 @@ const SPGame = () => {
         <div id="sp-game" className="page">
             <div id="game-hud">
                 <div id="game-options">
-                    <select name="difficulty" id="difficulty-select" value={difficulty} onChange={changeDifficulty}>
-                        <option className="difficulty-option" value="easy">Easy</option>
-                        <option className="difficulty-option" value="medium">Medium</option>
-                        <option className="difficulty-option" value="hard">Hard</option>
-                    </select>
+                    <CustomSelect options={['Easy', 'Medium', 'Impossible']} onSelect={changeDifficulty}/>
                     <button id="player-count">1P</button>
                 </div>
                 <div id="game-info">
