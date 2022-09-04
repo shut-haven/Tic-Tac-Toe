@@ -27,9 +27,18 @@ const CustomSelect = ({options, onSelect}) => {
     return ( 
         <div className="custom-select">
             <div className="select-wrapper">
-                <button className={optionsOpen ? 'expanded' : ''} type="button" aria-haspopup="listbox" aria-expanded={optionsOpen} onFocus={toggleOptions}
+                <button className={`drop-down-btn ${optionsOpen ? 'expanded' : ''}`} type="button" aria-haspopup="listbox" aria-expanded={optionsOpen} 
+                onClick={(event) => {
+                    if (optionsOpen) {
+                        event.target.blur();
+                    }
+                }}
+                onFocus={(event) => {
+                    toggleOptions();
+                    event.preventDefault();
+                }}
                 onBlur={(event) => {
-                    if (event.relatedTarget === null || !event.relatedTarget.classList.contains('custom-option')) {
+                    if (event.target.classList.contains('drop-down-btn') && (event.relatedTarget === null || !event.relatedTarget.classList.contains('custom-option'))) {
                         console.log('User clicked on another part of the window');
                         toggleOptions();
                     }
@@ -50,6 +59,7 @@ const CustomSelect = ({options, onSelect}) => {
                                     setOptionsOpen(false);
                                     onSelect(options[index]);
                                 }}>
+                                <span>&#10003;</span>
                                 {option}
                             </li>)
                         })
