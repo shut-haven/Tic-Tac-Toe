@@ -62,5 +62,5 @@ export function turn(x, y, gameState) {
 }
 
 export function aiTurn(diff, gameState) {
-    
+    if ((diff === 'Easy' && gameState.turns ))
 }
