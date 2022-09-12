@@ -9,7 +9,7 @@ function App() {
     <div id="app">
       <Routes>
           <Route index element={<MainMenu />} />
-          <Route path="/singleplayer" element={<SPGame multi={true}/>} />
+          <Route path="/singleplayer" element={<SPGame />} />
           <Route path="/help" element={<Help />} />
       </Routes>
     </div>

@@ -50,6 +50,7 @@ body {
     font-family: 'Titan One', sans-serif;
     color: white;
     font-size: 4rem;
+    /*text-shadow: -1px -1px 0px #2196f3, 3px 3px 0px #2196f3, 6px 6px 0px #0d47a1;*/
     text-shadow: -1px -1px 0px #2196f3, 3px 3px 0px #2196f3, 6px 6px 0px #0d47a1;
 }
 
@@ -204,7 +205,7 @@ body {
 #game-options {
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     justify-content: space-between;
 }
 
@@ -235,6 +236,10 @@ body {
     
 }
 
+.select-wrapper button:focus-visible {
+    outline: none;
+}
+
 .drop-down-icon {
     border-color: white transparent;
     border-style: solid;
@@ -244,6 +249,8 @@ body {
     margin: 10px 8px;
     vertical-align: top;
     width: 0;
+    cursor: pointer;
+    pointer-events: none;
 }
 
 .options-list {
@@ -283,6 +290,17 @@ body {
     display: inline-block;
 }
 
+#player-mode {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+#player-mode svg path {
+    fill:#fff;
+}
+
 #game-info {
     width: 100%;
     display: flex;
@@ -297,13 +315,14 @@ body {
     justify-content: space-between;
 }
 
-.score-btn {
+.player-score {
     background: inherit;
     border: 2px solid white;
     color: white;
     border-radius: 5px;
     width: 40%;
     height: 30px;
+    padding: 1px 6px;
     min-width: 95px;
     max-width: 150px;
     display: flex;

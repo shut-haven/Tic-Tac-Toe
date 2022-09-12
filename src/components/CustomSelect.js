@@ -1,12 +1,13 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
-const CustomSelect = ({options, onSelect}) => {
+const CustomSelect = ({options, onSelect, initSelection}) => {
+
+    const initOption = options.indexOf(initSelection) > -1 ? options.indexOf(initSelection) : 0;
 
     const [optionsOpen, setOptionsOpen] = useState(false);
-    const [currentOption, setCurrentOption] = useState(0);
+    const [currentOption, setCurrentOption] = useState(initOption);
 
     const toggleOptions = () => {
-        console.log('Toggled options');
         setOptionsOpen(!optionsOpen);
     };
 
@@ -28,18 +29,22 @@ const CustomSelect = ({options, onSelect}) => {
         <div className="custom-select">
             <div className="select-wrapper">
                 <button className={`drop-down-btn ${optionsOpen ? 'expanded' : ''}`} type="button" aria-haspopup="listbox" aria-expanded={optionsOpen} 
-                onClick={(event) => {
+                onMouseDown={(event) => {
+                    event.preventDefault();
                     if (optionsOpen) {
                         event.target.blur();
                     }
+                    else {
+                        event.target.focus();
+                    }
                 }}
                 onFocus={(event) => {
-                    toggleOptions();
                     event.preventDefault();
+                    toggleOptions();
                 }}
                 onBlur={(event) => {
-                    if (event.target.classList.contains('drop-down-btn') && (event.relatedTarget === null || !event.relatedTarget.classList.contains('custom-option'))) {
-                        console.log('User clicked on another part of the window');
+                    console.log('Custom select blur happened');
+                    if (event.relatedTarget === null || !event.relatedTarget.classList.contains('custom-option')) {
                         toggleOptions();
                     }
                 }}
