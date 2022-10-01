@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import  useLocalStorage  from "../hooks/useLocalStorage";
 import { Link } from "react-router-dom";
-import { turn } from "../util/Game";
+import { turn, aiTurn } from "../util/Game";
 import CustomSelect from "../components/CustomSelect";
 import Gameboard from "../components/Gameboard";
 
@@ -79,8 +79,10 @@ const SPGame = () => {
     }
 
     useEffect(() => {
-        if (gameState.aiTurn) {
-            console.log('AI turn should have ran');
+        if (gameState.aiTurn && singlePlayer) {
+            const cords = aiTurn(difficulty, gameState);
+
+            handleTurn(cords.x, cords.y);
         }
     }, [gameState]);
 

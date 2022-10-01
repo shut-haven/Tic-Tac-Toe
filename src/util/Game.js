@@ -56,13 +56,34 @@ export function turn(x, y, gameState) {
         nextGameState.opponent = nextGameState.player;
         nextGameState.player = opponent;
         nextGameState.status = `${nextGameState.player}'s turn`;
+        nextGameState.aiTurn = !nextGameState.aiTurn;
     }
     
     return nextGameState;
 }
 
 export function aiTurn(diff, gameState) {
-    if ((diff === 'Easy' && gameState.turns )) {
-        
+
+    const advantage = (diff === 'Medium' && gameState.turns > 6);
+    let cords = {x: 0, y: 0};
+
+    if (diff !== 'Easy' && !advantage) {
+        console.log('AI should use min max');
     }
+    else {
+       console.log('AI should use random space');
+       let x = 0, y = 0;
+
+       do {
+        x = Math.floor(Math.random() * 3);
+        y = Math.floor(Math.random() * 3);
+       } while (gameState.grid[x][y] !== '');
+
+       console.log(`AI selected space X:${x} Y:${y}`);
+       cords.x = x;
+       cords.y = y;
+    }
+
+    return cords;
+    
 }
