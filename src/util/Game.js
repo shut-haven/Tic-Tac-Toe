@@ -71,11 +71,17 @@ export function aiTurn(diff, gameState) {
         console.log('AI should use min max');
         // AI is always the maximizing player
 
+        // Use original game state instead of next game state
+
         let bestScore = -Infinity;
 
-        for(let i = 0; i < 3; i++) {
-            for(let j = 0; j < 3; j++) {
-                
+        for(let x = 0; x < 3; x++) {
+            for(let y = 0; y < 3; y++) {
+                if (gameState.grid[x][y] !== '') {
+                    continue;
+                }
+
+                let next 
             }
         }
     }

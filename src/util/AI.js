@@ -16,6 +16,8 @@ export function miniMax(gameState, depth, alpha, beta, maximizing) {
 
     let bestScore = 0;
 
+    // Use original game state instead of next game state
+
     if (maximizing) {
         let maxScore = -Infinity;
         
