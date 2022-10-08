@@ -5,7 +5,7 @@ export function miniMax(gameState, depth, alpha, beta, maximizing) {
     if (!gameState.active) {
         
         if (gameState.winner) {
-            return gameState.player === 'x' ? (-10 + depth) : (10 - depth);
+            return maximizing ? (100 - depth) : (-100 + depth);
         }
         else {
             return 0;

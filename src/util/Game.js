@@ -69,6 +69,15 @@ export function aiTurn(diff, gameState) {
 
     if (diff !== 'Easy' && !advantage) {
         console.log('AI should use min max');
+        // AI is always the maximizing player
+
+        let bestScore = -Infinity;
+
+        for(let i = 0; i < 3; i++) {
+            for(let j = 0; j < 3; j++) {
+                
+            }
+        }
     }
     else {
        console.log('AI should use random space');
