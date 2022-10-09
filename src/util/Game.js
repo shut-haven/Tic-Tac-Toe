@@ -1,3 +1,5 @@
+import { miniMax } from "./AI";
+
 export function turn(x, y, gameState) {
 
     // Check if the space is already marked 
@@ -81,9 +83,18 @@ export function aiTurn(diff, gameState) {
                     continue;
                 }
 
-                let next 
+                let nextGameState = turn(x, y, gameState);
+
+                let score = miniMax(nextGameState, 0, false);
+
+                if (score > bestScore) {
+                    bestScore = score;
+                    cords.x = x;
+                    cords.y = y;
+                }                
             }
         }
+        console.log(`AI selected best option, space X:${cords.x} Y:${cords.y}`);
     }
     else {
        console.log('AI should use random space');
@@ -99,6 +110,5 @@ export function aiTurn(diff, gameState) {
        cords.y = y;
     }
 
-    return cords;
-    
+    return cords;  
 }
