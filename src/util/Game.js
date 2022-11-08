@@ -70,22 +70,27 @@ export function aiTurn(diff, gameState) {
     let cords = {x: 0, y: 0};
 
     if (diff !== 'Easy' && !advantage) {
-        console.log('AI should use min max');
+        console.log('AI should use mini max');
         // AI is always the maximizing player
 
-        // Use original game state instead of next game state
+        if (gameState.turns === 9) {
+            cords.x = 1;
+            cords.y = 1;
+            return cords;
+        }
 
         let bestScore = -Infinity;
 
         for(let x = 0; x < 3; x++) {
             for(let y = 0; y < 3; y++) {
+                console.log(`Game prediction: ${x + y}`);
                 if (gameState.grid[x][y] !== '') {
                     continue;
                 }
 
                 let nextGameState = turn(x, y, gameState);
 
-                let score = miniMax(nextGameState, 0, false);
+                let score = miniMax(nextGameState, 0, -Infinity, Infinity, false);
 
                 if (score > bestScore) {
                     bestScore = score;
@@ -94,7 +99,9 @@ export function aiTurn(diff, gameState) {
                 }                
             }
         }
+        
         console.log(`AI selected best option, space X:${cords.x} Y:${cords.y}`);
+        console.log(`With a score of: ${bestScore}`);
     }
     else {
        console.log('AI should use random space');
